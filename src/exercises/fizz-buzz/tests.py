@@ -1,0 +1,7 @@
+assert fizzbuzz(0) == [], "fizzbuzz(0) should be an empty list"
+assert fizzbuzz(1) == [1], "fizzbuzz(1) should be [1]"
+assert fizzbuzz(3) == [1, 2, "Fizz"], "3 is divisible by 3"
+assert fizzbuzz(5) == [1, 2, "Fizz", 4, "Buzz"], "5 is divisible by 5"
+assert fizzbuzz(15)[-1] == "FizzBuzz", "15 is divisible by both 3 and 5"
+assert fizzbuzz(4)[0] == 1 and isinstance(fizzbuzz(4)[0], int), "plain numbers stay ints"
+assert len(fizzbuzz(100)) == 100, "the list has one entry per number"

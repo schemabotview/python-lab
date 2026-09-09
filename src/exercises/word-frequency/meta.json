@@ -1,0 +1,7 @@
+{
+  "title": "Word Frequency",
+  "difficulty": "medium",
+  "order": 3,
+  "summary": "Count how often each word appears in a piece of text.",
+  "tags": ["dictionaries", "strings"]
+}

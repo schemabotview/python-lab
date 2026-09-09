@@ -1,0 +1,7 @@
+{
+  "title": "Balanced Brackets",
+  "difficulty": "hard",
+  "order": 5,
+  "summary": "Decide whether every bracket in a string is correctly closed.",
+  "tags": ["stacks", "strings"]
+}

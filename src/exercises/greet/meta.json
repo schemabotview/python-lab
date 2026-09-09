@@ -1,0 +1,7 @@
+{
+  "title": "Greet",
+  "difficulty": "easy",
+  "order": 1,
+  "summary": "Build a greeting string from a name.",
+  "tags": ["strings", "functions"]
+}

@@ -1,0 +1,7 @@
+assert two_sum([2, 7, 11, 15], 9) == (0, 1), "2 + 7 == 9, at indices 0 and 1"
+assert two_sum([3, 2, 4], 6) == (1, 2), "2 + 4 == 6, at indices 1 and 2"
+assert two_sum([3, 3], 6) == (0, 1), "duplicate values are still two elements"
+assert two_sum([1, 2, 3], 100) is None, "return None when nothing matches"
+assert two_sum([], 0) is None, "an empty list has no pair"
+assert two_sum([3], 6) is None, "one element can't be used twice"
+assert two_sum([-3, 4, 1], -2) == (0, 2), "negative numbers work the same way"
