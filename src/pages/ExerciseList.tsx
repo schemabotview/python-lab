@@ -14,7 +14,7 @@ export function ExerciseList() {
   return (
     <div className="page">
       <header className="page-head">
-        <h1>Code Lab</h1>
+        <h1>Python Lab</h1>
         <p className="lede">
           Python exercises that run entirely in your browser — nothing to install.
         </p>

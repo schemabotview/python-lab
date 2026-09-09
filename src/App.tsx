@@ -23,7 +23,7 @@ function NotFound() {
 }
 
 // Hash routing, not history routing: GitHub Pages serves static files with no
-// SPA rewrite, so /code-lab/exercise/two-sum would 404 on refresh or a shared
+// SPA rewrite, so /python-lab/exercise/two-sum would 404 on refresh or a shared
 // link. It also matches the other GraphL apps, which all route on #/<id>.
 export default function App() {
   return (

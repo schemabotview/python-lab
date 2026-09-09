@@ -60,7 +60,7 @@ export function ExerciseView() {
   return (
     <div className="app">
       <SplitLayout
-        storageKey="code-lab:split"
+        storageKey="python-lab:split"
         left={
           <section className="panel prompt-panel">
             <header className="panel-head">

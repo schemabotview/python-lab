@@ -4,7 +4,7 @@ import { readJSON, writeJSON } from "./storage";
  * Work in progress, kept per exercise so navigating away and back — or closing
  * the tab — doesn't discard what the student has typed.
  */
-const KEY = "code-lab:drafts";
+const KEY = "python-lab:drafts";
 
 type DraftMap = Record<string, string>;
 

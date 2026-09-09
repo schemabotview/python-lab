@@ -1,7 +1,11 @@
-# Code Lab
+# python-lab
 
 Python coding exercises that run entirely in the browser. No backend, no
 install — the interpreter is real CPython compiled to WebAssembly.
+
+The hands-on half of the Python track: where the [`python`](../python) concept
+app teaches with narrated diagrams, python-lab has you write and run the code.
+Serves at **https://graphl.in/python-lab/**.
 
 ## Running it
 

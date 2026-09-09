@@ -5,7 +5,7 @@ import { readJSON, writeJSON } from "./storage";
  * Which exercises the student has passed. Stored locally — this is a practice
  * tool, not an assessment system, so there is no server to answer to.
  */
-const KEY = "code-lab:progress";
+const KEY = "python-lab:progress";
 
 export type Progress = Record<string, { completedAt: string }>;
 

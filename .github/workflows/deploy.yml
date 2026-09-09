@@ -1,6 +1,6 @@
 # Build the Vite app and deploy it to GitHub Pages on every push to main. The site is served at
-# graphl.in/code-lab/ — the apex custom domain is inherited from the org's schemabotview.github.io
-# Pages site, and the app sets its vite `base` to /code-lab/ for the production build so asset URLs
+# graphl.in/python-lab/ — the apex custom domain is inherited from the org's schemabotview.github.io
+# Pages site, and the app sets its vite `base` to /python-lab/ for the production build so asset URLs
 # are subpath-relative (scripts/base.mjs is the single definition of that path).
 #
 # `prebuild` copies the Pyodide runtime into public/ and generates the service worker, so the ~13 MB

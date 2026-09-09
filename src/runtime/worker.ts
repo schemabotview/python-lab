@@ -7,7 +7,7 @@ import type { TestResult, WorkerRequest, WorkerResponse } from "./protocol";
 // relative to indexURL.
 //
 // BASE_URL — not a leading-slash literal — because the app deploys under
-// graphl.in/code-lab/. Vite inlines this at build time, in worker bundles too.
+// graphl.in/python-lab/. Vite inlines this at build time, in worker bundles too.
 // It always ends in "/".
 const PYODIDE_BASE = `${import.meta.env.BASE_URL}pyodide/`;
 
