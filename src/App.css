@@ -36,7 +36,12 @@ a {
    GraphL eyebrow → subject → a single column of numbered cards. The lab keeps the extra per-entry
    metadata a concept card has no use for — difficulty, summary, tags, completion. */
 .idx {
-  --idx-accent: var(--accent);
+  /* The index deliberately does NOT use --accent. --accent is One Dark's blue (#61afef), which
+     belongs to the editor surface — it matches @codemirror/theme-one-dark, and the --ok / --warn /
+     --error tokens beside it. This page is the other thing: the catalog entrance, which sits beside
+     the python concept app's index at graphl.in. So it anchors on THAT app's brand instead, or the
+     same concept shows two different blues across two sites in one catalog. */
+  --idx-accent: #4b8bbe; /* python concept app's --brand */
   --idx-muted: var(--muted);
   --idx-line: rgba(255, 255, 255, 0.09);
   min-height: 100vh;
@@ -137,6 +142,7 @@ a {
 }
 
 .idx-card__title {
+  min-width: 0; /* flex child: without this a long title overflows the card instead of ellipsizing */
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.01em;
