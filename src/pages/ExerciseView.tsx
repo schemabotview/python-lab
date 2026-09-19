@@ -61,6 +61,7 @@ export function ExerciseView() {
     <div className="app">
       <SplitLayout
         storageKey="python-lab:split"
+        label="Resize the requirement pane"
         left={
           <section className="panel prompt-panel">
             <header className="panel-head">
@@ -80,64 +81,70 @@ export function ExerciseView() {
           </section>
         }
         right={
-          <div className="workspace">
-            <section className="panel editor-panel">
-              <header className="panel-head">
-                <h2>solution.py</h2>
-              </header>
-              <div className="panel-body">
-                <Editor
-                  value={code}
-                  onChange={updateCode}
-                  onRun={handleRun}
-                  onRunTests={() => void handleRunTests()}
-                  documentKey={`${exercise.id}:${resetNonce}`}
-                />
-              </div>
-
-              <footer className="panel-foot">
-                {/* The status sits beside the buttons it explains: while the
-                    runtime boots, Run is disabled and this says why. */}
-                <span className={`badge badge-${py.status}`}>
-                  {py.bootError
-                    ? "Runtime failed to load"
-                    : booting
-                      ? "Starting Python…"
-                      : busy
-                        ? "Running"
-                        : `Python ${py.version ?? ""}`}
-                </span>
-
-                <div className="toolbar">
-                  <button className="link" onClick={reset} disabled={code === exercise.starter}>
-                    Reset
-                  </button>
-                  {busy ? (
-                    <button className="danger" onClick={py.stop}>
-                      Stop
-                    </button>
-                  ) : (
-                    <>
-                      <button className="secondary" onClick={handleRun} disabled={booting}>
-                        Run <kbd>⌘↵</kbd>
-                      </button>
-                      <button onClick={() => void handleRunTests()} disabled={booting}>
-                        Run tests <kbd>⇧⌘↵</kbd>
-                      </button>
-                    </>
-                  )}
+          <SplitLayout
+            direction="column"
+            storageKey="python-lab:split-output"
+            label="Resize the solution pane"
+            left={
+              <section className="panel editor-panel">
+                <header className="panel-head">
+                  <h2>solution.py</h2>
+                </header>
+                <div className="panel-body">
+                  <Editor
+                    value={code}
+                    onChange={updateCode}
+                    onRun={handleRun}
+                    onRunTests={() => void handleRunTests()}
+                    documentKey={`${exercise.id}:${resetNonce}`}
+                  />
                 </div>
-              </footer>
-            </section>
 
-            <OutputPanel
-              lines={py.lines}
-              droppedLines={py.droppedLines}
-              outcome={py.outcome}
-              status={py.status}
-              onClear={py.clear}
-            />
-          </div>
+                <footer className="panel-foot">
+                  {/* The status sits beside the buttons it explains: while the
+                      runtime boots, Run is disabled and this says why. */}
+                  <span className={`badge badge-${py.status}`}>
+                    {py.bootError
+                      ? "Runtime failed to load"
+                      : booting
+                        ? "Starting Python…"
+                        : busy
+                          ? "Running"
+                          : `Python ${py.version ?? ""}`}
+                  </span>
+
+                  <div className="toolbar">
+                    <button className="link" onClick={reset} disabled={code === exercise.starter}>
+                      Reset
+                    </button>
+                    {busy ? (
+                      <button className="danger" onClick={py.stop}>
+                        Stop
+                      </button>
+                    ) : (
+                      <>
+                        <button className="secondary" onClick={handleRun} disabled={booting}>
+                          Run <kbd>⌘↵</kbd>
+                        </button>
+                        <button onClick={() => void handleRunTests()} disabled={booting}>
+                          Run tests <kbd>⇧⌘↵</kbd>
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </footer>
+              </section>
+            }
+            right={
+              <OutputPanel
+                lines={py.lines}
+                droppedLines={py.droppedLines}
+                outcome={py.outcome}
+                status={py.status}
+                onClear={py.clear}
+              />
+            }
+          />
         }
       />
 

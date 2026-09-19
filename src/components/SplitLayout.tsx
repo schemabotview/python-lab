@@ -1,21 +1,28 @@
 import { useCallback, useRef, useState, type ReactNode } from "react";
 import { readJSON, writeJSON } from "../lib/storage";
 
+/** "row" puts the panes side by side, "column" stacks them. */
+type Direction = "row" | "column";
+
 type SplitLayoutProps = {
+  /** First pane: the left one in a row, the top one in a column. */
   left: ReactNode;
+  /** Second pane: the right one in a row, the bottom one in a column. */
   right: ReactNode;
   /** Where the stored ratio lives, so the choice survives reloads. */
   storageKey: string;
+  direction?: Direction;
+  /** What the divider resizes, read out by screen readers. */
+  label: string;
 };
 
-const MIN = 0.22;
-const MAX = 0.7;
-const DEFAULT = 0.38;
-const STEP = 0.02;
+/** Travel limits and the reset position, per axis. */
+const LIMITS: Record<Direction, { min: number; max: number; home: number }> = {
+  row: { min: 0.22, max: 0.7, home: 0.38 },
+  column: { min: 0.25, max: 0.8, home: 0.6 },
+};
 
-function clamp(ratio: number) {
-  return Math.min(MAX, Math.max(MIN, ratio));
-}
+const STEP = 0.02;
 
 /**
  * Two panes with a draggable divider between them.
@@ -24,9 +31,22 @@ function clamp(ratio: number) {
  * grid-template — inline styles beat media queries, and the narrow-screen
  * layout needs to be able to stack these panes regardless of the ratio.
  */
-export function SplitLayout({ left, right, storageKey }: SplitLayoutProps) {
+export function SplitLayout({
+  left,
+  right,
+  storageKey,
+  direction = "row",
+  label,
+}: SplitLayoutProps) {
+  const limits = LIMITS[direction];
   const container = useRef<HTMLDivElement>(null);
-  const [ratio, setRatio] = useState(() => clamp(readJSON(storageKey, DEFAULT)));
+
+  const clamp = useCallback(
+    (ratio: number) => Math.min(limits.max, Math.max(limits.min, ratio)),
+    [limits],
+  );
+
+  const [ratio, setRatio] = useState(() => clamp(readJSON(storageKey, limits.home)));
   const [dragging, setDragging] = useState(false);
 
   const commit = useCallback(
@@ -35,18 +55,27 @@ export function SplitLayout({ left, right, storageKey }: SplitLayoutProps) {
       setRatio(clamped);
       writeJSON(storageKey, clamped);
     },
-    [storageKey],
+    [clamp, storageKey],
   );
 
-  const ratioFromEvent = (clientX: number) => {
+  const ratioFromEvent = (clientX: number, clientY: number) => {
     const bounds = container.current?.getBoundingClientRect();
-    if (!bounds || bounds.width === 0) return null;
-    return (clientX - bounds.left) / bounds.width;
+    if (!bounds) return null;
+    if (direction === "row") {
+      if (bounds.width === 0) return null;
+      return (clientX - bounds.left) / bounds.width;
+    }
+    if (bounds.height === 0) return null;
+    return (clientY - bounds.top) / bounds.height;
   };
+
+  // The two arrow keys that move the divider along its own axis.
+  const [shrink, grow] =
+    direction === "row" ? ["ArrowLeft", "ArrowRight"] : ["ArrowUp", "ArrowDown"];
 
   return (
     <div
-      className={`split ${dragging ? "split-dragging" : ""}`}
+      className={`split split-${direction} ${dragging ? "split-dragging" : ""}`}
       ref={container}
       style={{ "--split": `${(ratio * 100).toFixed(2)}%` } as React.CSSProperties}
     >
@@ -55,11 +84,11 @@ export function SplitLayout({ left, right, storageKey }: SplitLayoutProps) {
       <div
         className="split-handle"
         role="separator"
-        aria-orientation="vertical"
-        aria-label="Resize the requirement pane"
+        aria-orientation={direction === "row" ? "vertical" : "horizontal"}
+        aria-label={label}
         aria-valuenow={Math.round(ratio * 100)}
-        aria-valuemin={Math.round(MIN * 100)}
-        aria-valuemax={Math.round(MAX * 100)}
+        aria-valuemin={Math.round(limits.min * 100)}
+        aria-valuemax={Math.round(limits.max * 100)}
         tabIndex={0}
         onPointerDown={(event) => {
           // Pointer capture keeps the drag alive when the cursor outruns the
@@ -82,7 +111,7 @@ export function SplitLayout({ left, right, storageKey }: SplitLayoutProps) {
             setDragging(false);
             return;
           }
-          const next = ratioFromEvent(event.clientX);
+          const next = ratioFromEvent(event.clientX, event.clientY);
           if (next !== null) commit(next);
         }}
         onPointerUp={(event) => {
@@ -96,13 +125,13 @@ export function SplitLayout({ left, right, storageKey }: SplitLayoutProps) {
         onPointerCancel={() => setDragging(false)}
         onLostPointerCapture={() => setDragging(false)}
         onKeyDown={(event) => {
-          if (event.key === "ArrowLeft") commit(ratio - STEP);
-          else if (event.key === "ArrowRight") commit(ratio + STEP);
-          else if (event.key === "Home") commit(DEFAULT);
+          if (event.key === shrink) commit(ratio - STEP);
+          else if (event.key === grow) commit(ratio + STEP);
+          else if (event.key === "Home") commit(limits.home);
           else return;
           event.preventDefault();
         }}
-        onDoubleClick={() => commit(DEFAULT)}
+        onDoubleClick={() => commit(limits.home)}
       />
 
       {right}

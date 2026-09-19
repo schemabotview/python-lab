@@ -249,34 +249,89 @@ a {
   flex: 1;
   min-height: 0;
   display: grid;
-  /* --split is set inline by SplitLayout; the media query below can still
-     override the whole template because it targets a different property. */
-  grid-template-columns: var(--split, 38%) 10px minmax(0, 1fr);
   gap: 0;
+}
+
+/* --split is set inline by SplitLayout; the media query below can still
+   override the whole template because it targets a different property. */
+.split-row {
+  grid-template-columns: var(--split, 38%) 10px minmax(0, 1fr);
+}
+
+/* A column split fills the track it was handed rather than claiming flex
+   space of its own — nested inside a row split, that track is the pane. */
+.split-column {
+  flex: initial;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: var(--split, 60%) 10px minmax(0, 1fr);
 }
 
 .split-handle {
   align-self: stretch;
-  cursor: col-resize;
   border: 0;
   background: none;
   position: relative;
   touch-action: none;
 }
 
+.split-row > .split-handle {
+  cursor: col-resize;
+}
+
+.split-column > .split-handle {
+  cursor: row-resize;
+}
+
 /* A thin visible line inside a wider hit area — easy to grab, quiet to look at. */
 .split-handle::after {
   content: "";
   position: absolute;
-  inset: 0 4px;
   border-radius: 2px;
   background: transparent;
   transition: background 120ms ease;
 }
 
+.split-row > .split-handle::after {
+  inset: 0 4px;
+}
+
+.split-column > .split-handle::after {
+  inset: 4px 0;
+}
+
+/* A short grip at the middle of the track, visible at rest. The line above
+   only appears under the pointer, so without this the divider gives no sign
+   it can be dragged until someone happens to hover it. */
+.split-handle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 999px;
+  background: var(--border);
+  transition: background 120ms ease;
+  z-index: 1;
+}
+
+.split-row > .split-handle::before {
+  width: 3px;
+  height: 32px;
+}
+
+.split-column > .split-handle::before {
+  width: 32px;
+  height: 3px;
+}
+
 .split-handle:hover::after,
 .split-handle:focus-visible::after,
-.split-dragging .split-handle::after {
+.split-handle:hover::before,
+.split-handle:focus-visible::before,
+/* Direct child only: the row split wraps the column split, and dragging one
+   divider must not light up the other. */
+.split-dragging > .split-handle::after,
+.split-dragging > .split-handle::before {
   background: var(--accent);
 }
 
@@ -286,19 +341,19 @@ a {
 
 /* Keep the pointer stream on the handle while dragging over the editor. */
 .split-dragging {
-  cursor: col-resize;
   user-select: none;
+}
+
+.split-row.split-dragging {
+  cursor: col-resize;
+}
+
+.split-column.split-dragging {
+  cursor: row-resize;
 }
 
 .split-dragging .cm-editor {
   pointer-events: none;
-}
-
-.workspace {
-  min-height: 0;
-  display: grid;
-  grid-template-rows: minmax(0, 3fr) minmax(0, 2fr);
-  gap: 12px;
 }
 
 /* ---------- panels ---------- */
@@ -589,13 +644,14 @@ kbd {
   }
 
   /* Stack the panes and retire the divider — there is no horizontal room to
-     trade at this width. */
-  .split {
+     trade at this width. The column split keeps its divider: vertical room is
+     exactly what is scarce here, so trading it is worth more, not less. */
+  .split-row {
     grid-template-columns: minmax(0, 1fr);
     gap: 12px;
   }
 
-  .split-handle {
+  .split-row > .split-handle {
     display: none;
   }
 
@@ -603,8 +659,8 @@ kbd {
     max-height: 55vh;
   }
 
-  .workspace {
-    grid-template-rows: minmax(300px, 55vh) minmax(200px, 40vh);
+  .split-column {
+    min-height: 80vh;
   }
 
   .toolbar kbd {
