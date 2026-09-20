@@ -11,6 +11,9 @@
   --ok: #98c379;
   --warn: #e5c07b;
   --error: #e06c75;
+  /* The site bar's row height. On :root (unlike the bar's colours below) because .idx has to
+     subtract it from its own 100vh, and it cannot see a variable scoped to .site. */
+  --site-h: 60px;
 }
 
 * {
@@ -30,6 +33,161 @@ a {
   color: var(--accent);
 }
 
+/* ---------- site chrome (the platform bar) ---------- */
+
+/* THE THIRD COPY of the bar at graphl.in — see src/components/SiteHeader.tsx for why the lab
+   hand-ports it instead of importing @graphlearning/shell. Ported class for class from
+   ui-graphl/styles.css; the shell's copy is the same again. Change one, change all three.
+
+   The colour tokens are scoped to .site rather than :root ON PURPOSE. This repo's --accent is One
+   Dark's #61afef — it belongs to the editor surface and matches @codemirror/theme-one-dark. The
+   bar's --accent is the PLATFORM blue, which must look the same here as on every other GraphL
+   page. Scoping keeps both true at once: inside the bar --accent is platform blue, everywhere else
+   it stays the editor's. Do not hoist these to :root. */
+.site {
+  --muted: #8b909c;
+  --accent: #5b8cff;
+  --accent-soft: rgba(91, 140, 255, 0.14); /* the current nav item */
+  --line: rgba(255, 255, 255, 0.09);
+  --header-bg: rgba(255, 255, 255, 0.014);
+  --hover: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--line);
+  background: var(--header-bg);
+}
+
+.site__inner {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 0 32px;
+  min-height: var(--site-h);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.site__brand {
+  margin-right: auto; /* holds the brand left; nav + actions collect on the right */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site__logo {
+  display: block;
+  border-radius: 6px;
+}
+
+.site__name {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.site__nav {
+  display: flex;
+  gap: 4px;
+}
+
+.site__link {
+  flex: none;
+  white-space: nowrap;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.site__link:hover {
+  color: var(--text);
+  background: var(--hover);
+}
+
+.site__link[aria-current="page"] {
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+.site__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The icon buttons — the theme toggle and the account control when they exist. Kept separate from
+   the nav so that on a phone the nav can drop to its own row while these stay up on the brand
+   row. Empty until something is passed to SiteHeader's `actions` slot. */
+.site__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.site__icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+  font-family: inherit;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.site__icon:hover {
+  color: var(--text);
+  background: var(--hover);
+}
+
+.site__icon:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Phone: the nav row scrolls horizontally rather than collapsing into a hamburger. There are three
+   sections and the whole point of the current one is being visible; a menu would hide "you are
+   here" behind a tap. 560px is the bar's own breakpoint in all three copies — the lab's column
+   breaks at 640 instead, which the gutter rule further down reconciles. */
+@media (max-width: 560px) {
+  .site__inner {
+    padding: 8px 20px;
+    flex-wrap: wrap;
+    gap: 0 12px;
+  }
+  .site__nav {
+    order: 3; /* after brand and actions => its own row */
+    flex: 1 0 100%;
+    margin: 2px -20px 0; /* bleed to the screen edges so the row can scroll fully */
+    padding: 0 20px 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .site__nav::-webkit-scrollbar {
+    display: none;
+  }
+  .site__link {
+    display: flex;
+    align-items: center;
+    min-height: 40px; /* comfortable touch target */
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  .site__icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 /* ---------- exercise index (shared .idx* vocabulary) ---------- */
 
 /* Deliberately the same shape as a concept app's index (src/index.css there) and the root catalog:
@@ -44,30 +202,16 @@ a {
   --idx-accent: #4b8bbe; /* python concept app's --brand */
   --idx-muted: var(--muted);
   --idx-line: rgba(255, 255, 255, 0.09);
-  min-height: 100vh;
+  /* The bar is a sibling above this column, so the viewport it can fill is what the bar leaves.
+     On a phone the bar wraps to two rows and this under-subtracts — harmless, it is a min. */
+  min-height: calc(100vh - var(--site-h) - 1px); /* the bar's row, plus its 1px rule */
   max-width: 940px;
   margin: 0 auto;
-  padding: 40px 32px 64px;
+  padding: 28px 32px 64px;
 }
 
 .idx__head {
   margin-bottom: 36px;
-}
-
-.idx__brand {
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--idx-accent);
-  margin-bottom: 10px;
-  text-decoration: none;
-  transition: opacity 0.15s ease;
-}
-
-.idx__brand:hover {
-  opacity: 0.72;
 }
 
 .idx__subject {
@@ -644,7 +788,14 @@ kbd {
 
 @media (max-width: 640px) {
   .idx {
-    padding: 32px 20px 48px;
+    padding: 20px 20px 48px;
+  }
+  /* The column's gutter drops to 20 here but the bar's own phone rules start at 560, so between
+     those two widths the brand would sit 12px right of the cards. Move the bar's gutter with the
+     column's; everything else about the bar waits for 560. */
+  .site__inner {
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .idx__subject {
     font-size: 32px;
