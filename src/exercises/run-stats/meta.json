@@ -1,0 +1,8 @@
+{
+  "title": "Batch Run Statistics",
+  "difficulty": "medium",
+  "topic": "syntax",
+  "order": 4,
+  "summary": "Summarise last night's run times by hand — no aggregate built-ins.",
+  "tags": ["loops", "accumulator", "while", "walrus"]
+}

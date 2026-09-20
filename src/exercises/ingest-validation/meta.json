@@ -1,0 +1,8 @@
+{
+  "title": "Ingest Row Validation",
+  "difficulty": "medium",
+  "topic": "syntax",
+  "order": 5,
+  "summary": "Survive a messy feed — bad rows must not kill the run.",
+  "tags": ["exceptions", "raise", "EAFP"]
+}

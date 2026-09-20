@@ -11,9 +11,29 @@
 
 export type Difficulty = "easy" | "medium" | "hard";
 
+/**
+ * Which track an exercise belongs to. These mirror the course arc of the
+ * `python` concept app — every section a student can watch has one exercise
+ * here — plus "algorithms" for the interview-style set, which teaches no
+ * particular section.
+ */
+export type TopicId = "syntax" | "data" | "oop" | "idioms" | "stdlib" | "capstone" | "algorithms";
+
+/** Track headings, in the order they appear on the index. */
+export const TRACKS: { id: TopicId; label: string }[] = [
+  { id: "syntax", label: "Core syntax" },
+  { id: "data", label: "Data structures" },
+  { id: "oop", label: "Objects & classes" },
+  { id: "idioms", label: "Pythonic idioms" },
+  { id: "stdlib", label: "Files, I/O & stdlib" },
+  { id: "capstone", label: "Capstone" },
+  { id: "algorithms", label: "Algorithms" },
+];
+
 export type ExerciseMeta = {
   title: string;
   difficulty: Difficulty;
+  topic: TopicId;
   order: number;
   summary: string;
   tags: string[];
@@ -70,6 +90,20 @@ function build(): Exercise[] {
 }
 
 export const exercises = build();
+
+/**
+ * The index groups by track. A track with nothing in it is dropped rather than
+ * rendered as an empty heading, and an exercise whose topic is not in TRACKS
+ * still appears — under a heading of its own name, so a typo is visible on the
+ * page instead of silently hiding the exercise.
+ */
+export const tracks = (() => {
+  const known = new Set(TRACKS.map((track) => track.id));
+  const extra = [...new Set(exercises.map((e) => e.topic).filter((id) => !known.has(id)))];
+  return [...TRACKS, ...extra.map((id) => ({ id, label: id }))]
+    .map((track) => ({ ...track, exercises: exercises.filter((e) => e.topic === track.id) }))
+    .filter((track) => track.exercises.length > 0);
+})();
 
 const byId = new Map(exercises.map((exercise) => [exercise.id, exercise]));
 

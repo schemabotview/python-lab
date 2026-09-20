@@ -1,0 +1,8 @@
+{
+  "title": "Pipeline Utility Module",
+  "difficulty": "medium",
+  "topic": "syntax",
+  "order": 6,
+  "summary": "The helpers every pipeline repo grows — and the guard-clause habit.",
+  "tags": ["functions", "args", "kwargs", "guard-clauses"]
+}

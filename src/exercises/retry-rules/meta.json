@@ -1,0 +1,8 @@
+{
+  "title": "Job Retry & Alert Rules",
+  "difficulty": "easy",
+  "topic": "syntax",
+  "order": 2,
+  "summary": "Decide what an orchestrator does with a failed task — operators only.",
+  "tags": ["operators", "booleans", "truthiness", "bitwise"]
+}

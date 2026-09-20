@@ -1,7 +1,8 @@
 {
   "title": "FizzBuzz",
   "difficulty": "easy",
-  "order": 2,
+  "topic": "algorithms",
+  "order": 11,
   "summary": "Classic divisibility exercise over a range of numbers.",
   "tags": ["loops", "conditionals"]
 }

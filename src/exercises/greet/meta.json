@@ -1,7 +1,8 @@
 {
   "title": "Greet",
   "difficulty": "easy",
-  "order": 1,
+  "topic": "algorithms",
+  "order": 10,
   "summary": "Build a greeting string from a name.",
   "tags": ["strings", "functions"]
 }

@@ -1,0 +1,8 @@
+{
+  "title": "Data Quality Gate",
+  "difficulty": "medium",
+  "topic": "syntax",
+  "order": 3,
+  "summary": "Grade a loaded table and decide whether it gets promoted.",
+  "tags": ["conditionals", "ternary", "match"]
+}

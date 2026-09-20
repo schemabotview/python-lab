@@ -1,0 +1,8 @@
+{
+  "title": "Pipeline Run Cost",
+  "difficulty": "easy",
+  "topic": "syntax",
+  "order": 1,
+  "summary": "Cost a nightly job, parse its env config and report value types.",
+  "tags": ["variables", "types", "casting", "f-strings"]
+}
