@@ -1,0 +1,8 @@
+{
+  "title": "Log Line Parser",
+  "difficulty": "medium",
+  "topic": "data",
+  "order": 11,
+  "summary": "Pull fields out of run-log lines and clean up messy headers.",
+  "tags": ["strings", "split", "slicing", "immutable"]
+}

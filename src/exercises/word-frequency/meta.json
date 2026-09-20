@@ -2,7 +2,7 @@
   "title": "Word Frequency",
   "difficulty": "medium",
   "topic": "algorithms",
-  "order": 12,
+  "order": 40,
   "summary": "Count how often each word appears in a piece of text.",
   "tags": ["dictionaries", "strings"]
 }

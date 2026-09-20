@@ -1,0 +1,8 @@
+{
+  "title": "Row Count Ledger",
+  "difficulty": "medium",
+  "topic": "data",
+  "order": 9,
+  "summary": "Track rows loaded per table, and merge one run over another.",
+  "tags": ["dicts", "get", "setdefault", "items"]
+}

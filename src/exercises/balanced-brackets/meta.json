@@ -2,7 +2,7 @@
   "title": "Balanced Brackets",
   "difficulty": "hard",
   "topic": "algorithms",
-  "order": 14,
+  "order": 42,
   "summary": "Decide whether every bracket in a string is correctly closed.",
   "tags": ["stacks", "strings"]
 }

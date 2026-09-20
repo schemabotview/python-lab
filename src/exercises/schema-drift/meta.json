@@ -1,0 +1,8 @@
+{
+  "title": "Schema Drift",
+  "difficulty": "medium",
+  "topic": "data",
+  "order": 10,
+  "summary": "Compare what a source sent against what the target expects.",
+  "tags": ["sets", "difference", "subset", "frozenset"]
+}

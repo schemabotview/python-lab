@@ -1,0 +1,8 @@
+{
+  "title": "Nightly Table Schedule",
+  "difficulty": "medium",
+  "topic": "data",
+  "order": 7,
+  "summary": "Clean, slice and reorder the list of tables tonight's run loads.",
+  "tags": ["lists", "slicing", "mutation"]
+}

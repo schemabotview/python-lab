@@ -1,0 +1,8 @@
+{
+  "title": "Partition Keys",
+  "difficulty": "medium",
+  "topic": "data",
+  "order": 8,
+  "summary": "Build the immutable composite keys rows get grouped under.",
+  "tags": ["tuples", "unpacking", "hashable"]
+}

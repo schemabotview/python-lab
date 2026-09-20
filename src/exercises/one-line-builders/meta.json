@@ -1,0 +1,8 @@
+{
+  "title": "One-Line Builders",
+  "difficulty": "medium",
+  "topic": "data",
+  "order": 12,
+  "summary": "Reshape a batch of run records with comprehensions.",
+  "tags": ["comprehensions", "generators", "filtering"]
+}

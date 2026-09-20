@@ -2,7 +2,7 @@
   "title": "FizzBuzz",
   "difficulty": "easy",
   "topic": "algorithms",
-  "order": 11,
+  "order": 39,
   "summary": "Classic divisibility exercise over a range of numbers.",
   "tags": ["loops", "conditionals"]
 }

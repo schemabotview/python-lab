@@ -2,7 +2,7 @@
   "title": "Two Sum",
   "difficulty": "medium",
   "topic": "algorithms",
-  "order": 13,
+  "order": 41,
   "summary": "Find the two positions whose values add up to a target.",
   "tags": ["dictionaries", "lists"]
 }

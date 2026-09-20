@@ -1,8 +1,0 @@
-{
-  "title": "Class Roster Cleanup",
-  "difficulty": "medium",
-  "topic": "data",
-  "order": 7,
-  "summary": "De-duplicate and sort a roster using list methods and built-ins.",
-  "tags": ["lists", "slicing", "sorting"]
-}
