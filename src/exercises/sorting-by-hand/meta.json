@@ -1,0 +1,8 @@
+{
+  "title": "Sorting by Hand",
+  "difficulty": "hard",
+  "topic": "algorithms",
+  "order": 39,
+  "summary": "Insertion vs merge sort, counted — and why you never hand-roll either.",
+  "tags": ["sorting", "merge-sort", "complexity", "recursion"]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Recursion & Memoisation",
+  "difficulty": "hard",
+  "topic": "algorithms",
+  "order": 44,
+  "summary": "Walk a nested manifest, then watch memoisation collapse exponential work.",
+  "tags": ["recursion", "memoisation", "nesting", "RecursionError"]
+}

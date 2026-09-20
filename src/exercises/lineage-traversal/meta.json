@@ -1,0 +1,8 @@
+{
+  "title": "Lineage Traversal",
+  "difficulty": "hard",
+  "topic": "algorithms",
+  "order": 46,
+  "summary": "Walk table lineage both ways and find the blast radius of a change.",
+  "tags": ["graphs", "bfs", "lineage", "shortest-path"]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Binary Search",
+  "difficulty": "medium",
+  "topic": "algorithms",
+  "order": 38,
+  "summary": "Halve the range each step — and find a partition window with bisect.",
+  "tags": ["search", "binary-search", "bisect", "logarithmic"]
+}

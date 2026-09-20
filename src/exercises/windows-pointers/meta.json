@@ -1,0 +1,8 @@
+{
+  "title": "Windows & Two Pointers",
+  "difficulty": "hard",
+  "topic": "algorithms",
+  "order": 41,
+  "summary": "Slide a window instead of rebuilding it, and walk a sorted list from both ends.",
+  "tags": ["sliding-window", "two-pointers", "complexity"]
+}

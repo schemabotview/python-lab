@@ -1,0 +1,8 @@
+{
+  "title": "The Cost of a Lookup",
+  "difficulty": "medium",
+  "topic": "algorithms",
+  "order": 37,
+  "summary": "Count the steps two lookups take, and watch one of them explode.",
+  "tags": ["complexity", "big-o", "sets", "hashing"]
+}

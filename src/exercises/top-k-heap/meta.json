@@ -1,0 +1,8 @@
+{
+  "title": "Top-K with a Heap",
+  "difficulty": "hard",
+  "topic": "algorithms",
+  "order": 40,
+  "summary": "Find the biggest tables without sorting — or holding — the stream.",
+  "tags": ["heap", "heapq", "top-k", "streaming"]
+}

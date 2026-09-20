@@ -1,0 +1,8 @@
+{
+  "title": "Stacks & Queues",
+  "difficulty": "hard",
+  "topic": "algorithms",
+  "order": 43,
+  "summary": "Match brackets, resolve a monotonic stack, and drain a bounded queue.",
+  "tags": ["stack", "queue", "deque", "monotonic"]
+}

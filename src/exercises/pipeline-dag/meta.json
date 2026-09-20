@@ -1,0 +1,8 @@
+{
+  "title": "The Pipeline DAG",
+  "difficulty": "hard",
+  "topic": "algorithms",
+  "order": 45,
+  "summary": "Resolve task dependencies into a run order — and catch the cycle.",
+  "tags": ["graphs", "topological-sort", "cycles", "scheduling"]
+}

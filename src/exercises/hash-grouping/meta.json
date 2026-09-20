@@ -1,0 +1,8 @@
+{
+  "title": "Hashing & Grouping",
+  "difficulty": "medium",
+  "topic": "algorithms",
+  "order": 42,
+  "summary": "Trade memory for time — one pass with a dict beats every pair.",
+  "tags": ["hashing", "two-sum", "grouping", "join-keys"]
+}
