@@ -1,0 +1,8 @@
+{
+  "title": "Partition Records",
+  "difficulty": "medium",
+  "topic": "oop",
+  "order": 18,
+  "summary": "Let @dataclass write the boilerplate for a record type.",
+  "tags": ["dataclass", "frozen", "field", "post-init"]
+}

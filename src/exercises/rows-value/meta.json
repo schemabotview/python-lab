@@ -1,0 +1,8 @@
+{
+  "title": "A Rows Value Type",
+  "difficulty": "medium",
+  "topic": "oop",
+  "order": 17,
+  "summary": "Make a row count print, compare, sort, add and size like a built-in.",
+  "tags": ["dunders", "data-model", "operators", "hash"]
+}

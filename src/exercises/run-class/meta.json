@@ -1,0 +1,8 @@
+{
+  "title": "The Pipeline Run Class",
+  "difficulty": "medium",
+  "topic": "oop",
+  "order": 13,
+  "summary": "One class holding a run's data, its rules and a shared counter.",
+  "tags": ["class", "self", "classmethod", "repr"]
+}

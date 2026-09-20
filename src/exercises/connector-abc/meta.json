@@ -1,0 +1,8 @@
+{
+  "title": "The Connector Contract",
+  "difficulty": "hard",
+  "topic": "oop",
+  "order": 20,
+  "summary": "Declare what every connector must do, and let the language enforce it.",
+  "tags": ["abc", "abstractmethod", "protocol", "contract"]
+}

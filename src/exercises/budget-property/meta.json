@@ -1,0 +1,8 @@
+{
+  "title": "Spend Budget",
+  "difficulty": "medium",
+  "topic": "oop",
+  "order": 19,
+  "summary": "Guard an object's rules behind plain attribute syntax.",
+  "tags": ["encapsulation", "property", "setter", "computed"]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Source Hierarchy",
+  "difficulty": "medium",
+  "topic": "oop",
+  "order": 15,
+  "summary": "One base source, specialised for S3 and Kafka without copying.",
+  "tags": ["inheritance", "super", "override", "mro"]
+}

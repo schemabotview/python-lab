@@ -1,0 +1,8 @@
+{
+  "title": "Dataset Instances",
+  "difficulty": "medium",
+  "topic": "oop",
+  "order": 14,
+  "summary": "Every object owns its own state — and the trap when it doesn't.",
+  "tags": ["objects", "instance-state", "isinstance", "vars"]
+}

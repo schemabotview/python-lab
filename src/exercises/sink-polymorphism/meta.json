@@ -1,0 +1,8 @@
+{
+  "title": "Sink Fan-Out",
+  "difficulty": "medium",
+  "topic": "oop",
+  "order": 16,
+  "summary": "One write call, many sink types — and no base class in sight.",
+  "tags": ["polymorphism", "duck-typing", "protocols"]
+}
