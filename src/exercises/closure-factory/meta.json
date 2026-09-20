@@ -1,0 +1,8 @@
+{
+  "title": "Function Factories",
+  "difficulty": "medium",
+  "topic": "idioms",
+  "order": 23,
+  "summary": "Manufacture specialised functions that remember how they were made.",
+  "tags": ["closures", "nonlocal", "factories"]
+}

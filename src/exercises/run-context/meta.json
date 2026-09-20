@@ -1,0 +1,8 @@
+{
+  "title": "Transactions & Stages",
+  "difficulty": "hard",
+  "topic": "idioms",
+  "order": 26,
+  "summary": "Guarantee cleanup around a block — commit, roll back, always close.",
+  "tags": ["context-manager", "with", "enter-exit", "contextmanager"]
+}

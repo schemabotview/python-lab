@@ -1,0 +1,8 @@
+{
+  "title": "Instrumented Steps",
+  "difficulty": "hard",
+  "topic": "idioms",
+  "order": 25,
+  "summary": "Wrap pipeline steps with counting, tagging and retries.",
+  "tags": ["decorators", "wraps", "closures", "args"]
+}

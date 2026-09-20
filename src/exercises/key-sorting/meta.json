@@ -1,0 +1,8 @@
+{
+  "title": "Sorting Runs by Key",
+  "difficulty": "medium",
+  "topic": "idioms",
+  "order": 24,
+  "summary": "Order, select and collapse run records with lambdas.",
+  "tags": ["lambda", "key", "map", "filter", "any-all"]
+}

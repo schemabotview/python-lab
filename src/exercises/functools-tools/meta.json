@@ -1,0 +1,8 @@
+{
+  "title": "Folds, Partials & Caching",
+  "difficulty": "medium",
+  "topic": "idioms",
+  "order": 27,
+  "summary": "Fold batches, pre-fill arguments and memoise an expensive lookup.",
+  "tags": ["functools", "reduce", "partial", "lru_cache"]
+}

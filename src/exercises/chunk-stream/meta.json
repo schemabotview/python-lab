@@ -1,0 +1,8 @@
+{
+  "title": "Chunked Row Stream",
+  "difficulty": "medium",
+  "topic": "idioms",
+  "order": 22,
+  "summary": "Batch and merge streams lazily — including an endless one.",
+  "tags": ["generators", "yield", "yield-from", "lazy"]
+}

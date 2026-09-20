@@ -1,0 +1,8 @@
+{
+  "title": "Stream Toolbox",
+  "difficulty": "hard",
+  "topic": "idioms",
+  "order": 28,
+  "summary": "Stitch, slice, cycle, group and accumulate streams lazily.",
+  "tags": ["itertools", "chain", "islice", "groupby", "accumulate"]
+}

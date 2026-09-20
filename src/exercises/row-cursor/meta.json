@@ -1,0 +1,8 @@
+{
+  "title": "The Row Cursor",
+  "difficulty": "medium",
+  "topic": "idioms",
+  "order": 21,
+  "summary": "Write the protocol every for loop runs, by hand.",
+  "tags": ["iterator", "iter", "next", "StopIteration"]
+}
