@@ -1,0 +1,8 @@
+{
+  "title": "Row Export",
+  "difficulty": "medium",
+  "topic": "stdlib",
+  "order": 32,
+  "summary": "Write and read tabular rows — and see what split(',') destroys.",
+  "tags": ["csv", "DictReader", "DictWriter", "quoting"]
+}

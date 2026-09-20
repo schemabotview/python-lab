@@ -1,0 +1,8 @@
+{
+  "title": "Log Patterns",
+  "difficulty": "hard",
+  "topic": "stdlib",
+  "order": 34,
+  "summary": "Find, extract and replace with regular expressions.",
+  "tags": ["re", "groups", "findall", "sub"]
+}

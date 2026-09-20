@@ -1,0 +1,8 @@
+{
+  "title": "Levelled Diagnostics",
+  "difficulty": "hard",
+  "topic": "stdlib",
+  "order": 36,
+  "summary": "Dial detail up or down with a threshold, without editing code.",
+  "tags": ["logging", "levels", "handlers", "exception"]
+}

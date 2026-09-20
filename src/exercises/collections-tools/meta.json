@@ -1,0 +1,8 @@
+{
+  "title": "Tally, Group & Queue",
+  "difficulty": "medium",
+  "topic": "stdlib",
+  "order": 35,
+  "summary": "Four containers that each replace a multi-line pattern.",
+  "tags": ["collections", "Counter", "defaultdict", "deque", "namedtuple"]
+}

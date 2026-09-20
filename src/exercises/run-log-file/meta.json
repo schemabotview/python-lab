@@ -1,0 +1,8 @@
+{
+  "title": "The Run Log File",
+  "difficulty": "medium",
+  "topic": "stdlib",
+  "order": 29,
+  "summary": "Write, append and stream a log file — and learn what \"w\" destroys.",
+  "tags": ["files", "open", "modes", "with"]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Config & Manifest",
+  "difficulty": "medium",
+  "topic": "stdlib",
+  "order": 31,
+  "summary": "Move structured data between Python and JSON, both ways.",
+  "tags": ["json", "dumps", "load", "serialisation"]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Run Windows",
+  "difficulty": "medium",
+  "topic": "stdlib",
+  "order": 33,
+  "summary": "Parse, shift and compare the timestamps a schedule runs on.",
+  "tags": ["datetime", "timedelta", "strptime", "timezone"]
+}

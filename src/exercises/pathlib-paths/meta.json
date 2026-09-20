@@ -1,0 +1,8 @@
+{
+  "title": "The Data Directory",
+  "difficulty": "medium",
+  "topic": "stdlib",
+  "order": 30,
+  "summary": "Build, inspect and search paths as objects instead of strings.",
+  "tags": ["pathlib", "Path", "glob", "rglob"]
+}
