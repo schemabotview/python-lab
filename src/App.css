@@ -11,9 +11,71 @@
   --ok: #98c379;
   --warn: #e5c07b;
   --error: #e06c75;
+  --lift: #22262e; /* a surface lifted off --bg (a hover row) */
+  --lift-2: #2c313a; /* a second lifted surface, inside a panel */
+  --sunken: #1d2026; /* a surface set INTO the page (a well) */
+  --on-accent-ink: #12151a; /* text ON a filled accent — dark on the blue */
+  /* The foreground's RGB CHANNELS, so every rgba(var(--ink-rgb), a) flips with the theme. Dark keeps
+     the exact values it always had; light redefines this one line instead of eleven alpha tokens. */
+  --ink-rgb: 255, 255, 255;
+  /* Prose bold, brighter than --text on purpose. It was a literal #fff, which is invisible on a
+     light ground — and it takes the inline code chips nested inside a bold run with it. */
+  --strong: #ffffff;
   /* The site bar's row height. On :root (unlike the bar's colours below) because .idx has to
      subtract it from its own 100vh, and it cannot see a variable scoped to .site. */
   --site-h: 60px;
+}
+
+/* LIGHT — set by lib/theme.ts on <html>, and by the inline script in index.html before first paint.
+   Same token NAMES, different values; nothing selects on [data-theme] but this block.
+ *
+ * THE EDITOR IS THE REASON THIS IS NOT JUST AN INVERSION. --editor-bg and --accent belong to One
+ * Dark (@codemirror/theme-one-dark), which has no light counterpart — so on light the editor drops
+ * to CodeMirror's own light theme and these become the surface that matches IT, not a lightened
+ * version of One Dark's slate. Editor.tsx swaps the extension through a Compartment; these two
+ * values and that swap have to move together or the gutter stops matching the page. */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f7f8fa; /* identical to the shell's light surface, so crossing between apps does not flash */
+  --panel: #ffffff;
+  --panel-head: #eef1f5;
+  --editor-bg: #ffffff;
+  --border: #dfe3ea;
+  --text: #1a1d23;
+  --muted: #5a6675;
+  /* One Dark's #61afef is tuned to glow on #282c34 and washes out on white; darkened until it
+     carries text contrast, still the same blue. */
+  --accent: #2f6fe0;
+  --ok: #1a7f46;
+  --warn: #9a6b00;
+  --error: #c0303c;
+  --lift: #eef1f5;
+  --lift-2: #e4e8ee;
+  --sunken: #eceff4;
+  --on-accent-ink: #ffffff; /* the accent is dark now, so its ink flips to white */
+  --ink-rgb: 26, 29, 35;
+  --strong: #0d1117; /* darker than --text, the same relationship inverted */
+}
+
+/* The bar's and the index's colour tokens are SCOPED (see the notes at each), so :root[data-theme]
+   cannot reach them — each needs its own light rule. Same values the shell's light block uses, so
+   the bar matches across apps. */
+:root[data-theme='light'] .site {
+  --muted: #5a6675;
+  --accent: #2f6fe0; /* platform blue, darkened until it carries text contrast on off-white */
+  --accent-soft: rgba(47, 111, 224, 0.12);
+}
+:root[data-theme='light'] .idx {
+  /* python's brand at full strength is a mid-blue that goes weak on white. Darkened toward the page
+     ink the way ui-graphl darkens every card tint, rather than swapping to a different hue. */
+  --idx-accent: #2f6d99;
+}
+
+/* Set for the single frame a theme swap lands in, so the whole page changes at once instead of the
+   ground flipping while everything with a hover transition cross-fades after it. Ported from
+   ui-graphl's styles.css — one design, three implementations. */
+.theme-swap * {
+  transition: none !important;
 }
 
 * {
@@ -48,9 +110,9 @@ a {
   --muted: #8b909c;
   --accent: #5b8cff;
   --accent-soft: rgba(91, 140, 255, 0.14); /* the current nav item */
-  --line: rgba(255, 255, 255, 0.09);
-  --header-bg: rgba(255, 255, 255, 0.014);
-  --hover: rgba(255, 255, 255, 0.05);
+  --line: rgba(var(--ink-rgb), 0.09);
+  --header-bg: rgba(var(--ink-rgb), 0.014);
+  --hover: rgba(var(--ink-rgb), 0.05);
   border-bottom: 1px solid var(--line);
   background: var(--header-bg);
 }
@@ -201,7 +263,7 @@ a {
      same concept shows two different blues across two sites in one catalog. */
   --idx-accent: #4b8bbe; /* python concept app's --brand */
   --idx-muted: var(--muted);
-  --idx-line: rgba(255, 255, 255, 0.09);
+  --idx-line: rgba(var(--ink-rgb), 0.09);
   /* The bar is a sibling above this column, so the viewport it can fill is what the bar leaves.
      On a phone the bar wraps to two rows and this under-subtracts — harmless, it is a min. */
   min-height: calc(100vh - var(--site-h) - 1px); /* the bar's row, plus its 1px rule */
@@ -257,7 +319,7 @@ a {
 .idx-card {
   border: 1px solid var(--idx-line);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.018);
+  background: rgba(var(--ink-rgb), 0.018);
   overflow: hidden;
 }
 
@@ -273,7 +335,7 @@ a {
 }
 
 .idx-card__link:hover {
-  background: #22262e;
+  background: var(--lift);
 }
 
 .idx-card__num {
@@ -592,7 +654,7 @@ button {
   font: inherit;
   font-size: 13px;
   font-weight: 600;
-  color: #12151a;
+  color: var(--on-accent-ink);
   background: var(--accent);
   border: 0;
   border-radius: 6px;
@@ -667,7 +729,7 @@ kbd {
 .prose code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 12.5px;
-  background: #2c313a;
+  background: var(--lift-2);
   border-radius: 4px;
   padding: 1px 5px;
 }
@@ -711,7 +773,7 @@ kbd {
 }
 
 .prose strong {
-  color: #fff;
+  color: var(--strong);
 }
 
 /* ---------- console ---------- */
@@ -916,7 +978,7 @@ button.secondary {
   padding: 7px 10px;
   border-radius: 7px;
   border-left: 2px solid var(--border);
-  background: #1d2026;
+  background: var(--sunken);
 }
 
 .test-mark {

@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SiteHeader } from "../components/SiteHeader";
+import { ThemeToggle } from "../components/ThemeToggle";
+import { useTheme } from "../lib/theme";
 import { exercises, tracks } from "../exercises";
 import { prewarmPython } from "../hooks/usePythonRunner";
 import { resetProgress, useProgress } from "../lib/progress";
 
 export function ExerciseList() {
+  const { theme, toggle } = useTheme();
   const progress = useProgress();
   const completedCount = exercises.filter((exercise) => progress[exercise.id]).length;
 
@@ -17,7 +20,7 @@ export function ExerciseList() {
     // while .idx is a 940px centred column. Both use the same width and gutters, so the brand
     // lines up with the cards below it.
     <>
-      <SiteHeader />
+      <SiteHeader actions={<ThemeToggle theme={theme} onToggle={toggle} />} />
       <div className="idx">
         {/* Same shape as a concept app's index: the GraphL wordmark used to be an eyebrow here and
             is in the bar above now; what stays is this repo's subject. Kept identical so the
